@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: test -f README.md
+      - run: test -f .codex-plugin/plugin.json
+      - run: test -f .claude-plugin/plugin.json
+      - run: test -f gemini-extension.json
+      - run: test -n "$(find skills -name SKILL.md -print -quit)"

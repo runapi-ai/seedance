@@ -1,0 +1,56 @@
+# Seedance API Skill for RunAPI
+
+Generate video with Seedance 1.5 Pro, 2.0, and 2.0 Fast text-to-video and image-to-video. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Seedance through RunAPI.
+
+The canonical agent file is `skills/seedance/SKILL.md`.
+
+## Install
+
+```bash
+npx skills add runapi-ai/seedance -g
+```
+
+Or manually: clone this repo and copy `skills/seedance/` into your agent's skills directory.
+
+## Quick example
+
+```typescript
+import { SeedanceClient } from '@runapi.ai/seedance';
+
+const client = new SeedanceClient();
+const result = await client.textToVideo.run({
+  model: 'seedance-2.0',
+  prompt: 'A drone shot over mountains at sunset',
+  aspect_ratio: '16:9',
+});
+const url = result.videos[0].url;
+```
+
+## Routing
+
+- Model page: https://runapi.ai/models/seedance
+- Product docs: https://runapi.ai/docs#seedance
+- SDK docs: https://runapi.ai/docs#sdk-seedance
+- SDK repository: https://github.com/runapi-ai/seedance-sdk
+- Pricing and rate limits: https://runapi.ai/models/seedance/v1-lite
+- Provider comparison: https://runapi.ai/providers/bytedance
+- Browse all RunAPI models and skills: https://runapi.ai/models
+
+## Variants
+
+- [v1 lite](https://runapi.ai/models/seedance/v1-lite)
+- [v1 pro](https://runapi.ai/models/seedance/v1-pro)
+- [v1 pro fast](https://runapi.ai/models/seedance/v1-pro-fast)
+- [1.5 pro](https://runapi.ai/models/seedance/1.5-pro)
+- [2.0](https://runapi.ai/models/seedance/2.0)
+- [2.0 fast](https://runapi.ai/models/seedance/2.0-fast)
+
+## Agent rules
+
+- Keep API keys in `RUNAPI_API_KEY` or RunAPI CLI config; never commit secrets.
+- Prefer `create`, `get`, and `run` JSON passthrough patterns instead of inventing flags for every model parameter.
+- For seedance api pricing, rate-limit, and commercial-usage answers, link to the variant page rather than the repository README.
+
+## License
+
+Licensed under the Apache License, Version 2.0.
