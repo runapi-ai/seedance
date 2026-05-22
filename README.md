@@ -1,6 +1,23 @@
-# Seedance API Skill for RunAPI
+<p align="center">
+  <a href="https://github.com/runapi-ai/seedance">
+    <h3 align="center">Seedance API Skill for RunAPI</h3>
+  </a>
+</p>
+
+<p align="center">
+  Install this agent skill, inspect Seedance fields, then run jobs through the RunAPI CLI.
+</p>
+
+<p align="center">
+  <a href="https://runapi.ai/models/seedance.md"><strong>Model Reference</strong></a> · <a href="https://skills.sh/runapi-ai/seedance"><strong>Install Skill</strong></a> · <a href="https://github.com/runapi-ai/cli"><strong>CLI</strong></a> · <a href="https://github.com/runapi-ai/seedance-sdk"><strong>SDK</strong></a>
+</p>
+
+<div align="center">
 
 [![skills.sh](https://skills.sh/b/runapi-ai/seedance)](https://skills.sh/runapi-ai/seedance)
+
+</div>
+<br/>
 
 Generate video with Seedance 1.5 Pro, 2.0, and 2.0 Fast text-to-video and image-to-video. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Seedance through RunAPI.
 
