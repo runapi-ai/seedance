@@ -1,5 +1,7 @@
 # Seedance API Skill for RunAPI
 
+[![skills.sh](https://skills.sh/b/runapi-ai/seedance)](https://skills.sh/runapi-ai/seedance)
+
 Generate video with Seedance 1.5 Pro, 2.0, and 2.0 Fast text-to-video and image-to-video. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Seedance through RunAPI.
 
 The canonical agent file is `skills/seedance/SKILL.md`.

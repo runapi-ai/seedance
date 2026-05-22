@@ -4,6 +4,17 @@ description: Generate videos (Seedance 1.5 Pro, Seedance 2 / 2-fast text-to-vide
 documentation: https://runapi.ai/models/seedance
 provider_page: https://runapi.ai/providers/bytedance
 catalog: https://runapi.ai/models
+metadata:
+  openclaw:
+    homepage: https://runapi.ai/models/seedance
+    primaryEnv: RUNAPI_API_KEY
+    requires:
+      env:
+      - RUNAPI_API_KEY
+    envVars:
+    - name: RUNAPI_API_KEY
+      required: true
+      description: RunAPI API key from https://runapi.ai/api_keys.
 ---
 # @runapi.ai/seedance — RunAPI.ai Seedance video generation
 
@@ -21,7 +32,7 @@ Set your API key in the environment:
 
 ```dotenv
 # .env
-RUNAPI_API_KEY=runapi_xxx   # get one at https://runapi.ai/settings/api_keys
+RUNAPI_API_KEY=runapi_xxx   # get one at https://runapi.ai/api_keys
 ```
 
 ```ts
