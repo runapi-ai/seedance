@@ -1,6 +1,6 @@
 {
   "name": "seedance",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "RunAPI Seedance skill for Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents",
   "skills": [
     {

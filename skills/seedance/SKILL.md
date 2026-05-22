@@ -18,7 +18,7 @@ metadata:
     envVars:
     - name: RUNAPI_API_KEY
       required: false
-      description: Optional RunAPI API key; runapi login or saved CLI config can also authenticate the runapi binary.
+      description: Optional RunAPI API key; agents should prefer environment auth or saved CLI config. Browser login is interactive fallback only.
 ---
 
 # Seedance on RunAPI
@@ -32,7 +32,7 @@ Generate and edit video with Seedance through RunAPI. The default path for one-o
 
 ## CLI path
 
-The `runapi` binary is the runtime dependency. Authenticate with `runapi login` (browser) or set `RUNAPI_API_KEY`; a saved CLI config also works — no required environment variable.
+The `runapi` binary is the runtime dependency. Run `runapi auth status` first. For agents and headless runs, prefer `RUNAPI_API_KEY` or import it into saved config with `printf '%s' "$RUNAPI_API_KEY" | runapi auth import-token --token -`. Use `runapi login` only when the user explicitly wants interactive browser auth.
 
 Inspect the available actions and request fields with CLI help:
 
