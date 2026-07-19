@@ -13,4 +13,5 @@ jobs:
       - run: test -f .codex-plugin/plugin.json
       - run: test -f .claude-plugin/plugin.json
       - run: test -f gemini-extension.json
+      - run: node -e 'for (const file of [".codex-plugin/plugin.json", ".claude-plugin/plugin.json", "gemini-extension.json"]) JSON.parse(require("node:fs").readFileSync(file, "utf8"))'
       - run: test -n "$(find skills -name SKILL.md -print -quit)"
