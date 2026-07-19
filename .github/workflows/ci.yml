@@ -2,16 +2,68 @@ name: CI
 
 on:
   push:
+    branches: [main, "runapi-ci/**"]
+    tags: ["v*", "*/v*"]
   pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   structure:
+    name: Skill package
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - run: test -f README.md
-      - run: test -f .codex-plugin/plugin.json
-      - run: test -f .claude-plugin/plugin.json
-      - run: test -f gemini-extension.json
-      - run: node -e 'for (const file of [".codex-plugin/plugin.json", ".claude-plugin/plugin.json", "gemini-extension.json"]) JSON.parse(require("node:fs").readFileSync(file, "utf8"))'
-      - run: test -n "$(find skills -name SKILL.md -print -quit)"
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # zizmor: ignore[cache-poisoning] cache is opt-in and no cache input is configured; v4
+        with:
+          node-version: 22
+      - name: Verify README
+        run: test -f README.md
+      - name: Verify Codex manifest
+        run: test -f .codex-plugin/plugin.json
+      - name: Verify Claude Code manifest
+        run: test -f .claude-plugin/plugin.json
+      - name: Verify Gemini CLI manifest
+        run: test -f gemini-extension.json
+      - name: Verify skill entrypoint
+        run: test -n "$(find skills -name SKILL.md -print -quit)"
+      - name: Validate manifests and skill metadata
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          const files = [".codex-plugin/plugin.json", ".claude-plugin/plugin.json", "gemini-extension.json"];
+          const manifests = files.map((file) => [file, JSON.parse(fs.readFileSync(file, "utf8"))]);
+          const required = ["name", "version", "description", "skills"];
+          for (const [file, manifest] of manifests) {
+            const missing = required.filter((key) => !(key in manifest));
+            if (missing.length) throw new Error(`${file} missing ${missing.join(", ")}`);
+            if (!/^\d+\.\d+\.\d+$/.test(manifest.version)) throw new Error(`${file} has invalid version`);
+            if (!Array.isArray(manifest.skills) || manifest.skills.length === 0) throw new Error(`${file} has no skills`);
+            for (const skill of manifest.skills) {
+              if (!skill.path?.startsWith("skills/") || !skill.path.endsWith("/SKILL.md") || !fs.existsSync(skill.path)) {
+                throw new Error(`${file} has invalid skill path`);
+              }
+              const body = fs.readFileSync(skill.path, "utf8");
+              if (!/^---\n[\s\S]*?^name:\s*\S+[\s\S]*?^description:\s*\S+[\s\S]*?^---$/m.test(body)) {
+                throw new Error(`${skill.path} has invalid frontmatter`);
+              }
+            }
+          }
+          const versions = new Set(manifests.map(([, manifest]) => manifest.version));
+          if (versions.size !== 1) throw new Error("manifest version drift");
+          NODE
