@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.2.10](https://github.com/runapi-ai/seedance/releases/tag/v0.2.10) - 2026-07-29
+
+### Removed
+- Remove seedance-v1-lite from Seedance skill guidance.
+  Migration: Use seedance-v1-pro or another supported Seedance model.
+
+
 ## [v0.2.8](https://github.com/runapi-ai/seedance/releases/tag/v0.2.8) - 2026-06-18
 
 ### Changed

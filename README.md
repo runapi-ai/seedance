@@ -21,7 +21,7 @@
 </div>
 <br/>
 
-Generate video with Seedance 1.5 Pro, 2.0, and 2.0 Fast text-to-video and image-to-video. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Seedance through RunAPI.
+Generate video with Seedance 1.5 Pro, 2.0, 2.0 Fast, and 2.0 Mini text-to-video and image-to-video. This skill helps Claude Code, Codex, Gemini CLI, Cursor, and 50+ agents integrate Seedance through RunAPI.
 
 The canonical agent file is `skills/seedance/SKILL.md`.
 
@@ -64,18 +64,18 @@ const url = result.videos[0].url;
 - Product docs: https://runapi.ai/docs/api/seedance/text-to-video
 - SDK docs: https://runapi.ai/docs/resources/sdks
 - SDK repository: https://github.com/runapi-ai/seedance-sdk
-- Pricing and rate limits: https://runapi.ai/models/seedance/v1-lite
+- Pricing and rate limits: https://runapi.ai/models/seedance/v1-pro
 - Provider comparison: https://runapi.ai/providers/bytedance
 - Browse all RunAPI models and skills: https://runapi.ai/models
 
 ## Variants
 
-- [v1 lite](https://runapi.ai/models/seedance/v1-lite)
 - [v1 pro](https://runapi.ai/models/seedance/v1-pro)
 - [v1 pro fast](https://runapi.ai/models/seedance/v1-pro-fast)
 - [1.5 pro](https://runapi.ai/models/seedance/1.5-pro)
 - [2.0](https://runapi.ai/models/seedance/2.0)
 - [2.0 fast](https://runapi.ai/models/seedance/2.0-fast)
+- [2.0 mini](https://runapi.ai/models/seedance/2-mini)
 
 ## Agent rules
 
@@ -83,7 +83,7 @@ const url = result.videos[0].url;
 - RunAPI-generated file URLs are temporary. Download and store generated images, videos, audio, or other files in your own durable storage within 7 days; do not treat returned URLs as long-term assets.
 - Keep API keys in `RUNAPI_API_KEY` or RunAPI CLI config; never commit secrets.
 - Prefer `create`, `get`, and `run` JSON passthrough patterns instead of inventing flags for every model parameter.
-- For seedance api pricing, rate-limit, and commercial-usage answers, link to the variant page rather than the repository README.
+- For pricing, rate-limit, and commercial-usage answers, link to the variant page rather than the repository README.
 
 ## License
 
