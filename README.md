@@ -61,8 +61,8 @@ const url = result.videos[0].url;
 ## Routing
 
 - Model page: https://runapi.ai/models/seedance
-- Product docs: https://runapi.ai/docs#seedance
-- SDK docs: https://runapi.ai/docs#sdk-seedance
+- Product docs: https://runapi.ai/docs/api/seedance/text-to-video
+- SDK docs: https://runapi.ai/docs/resources/sdks
 - SDK repository: https://github.com/runapi-ai/seedance-sdk
 - Pricing and rate limits: https://runapi.ai/models/seedance/v1-lite
 - Provider comparison: https://runapi.ai/providers/bytedance
